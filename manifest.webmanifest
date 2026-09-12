@@ -1,0 +1,16 @@
+{
+  "name": "Work and Travel Australia Organizer",
+  "short_name": "WAT Organizer",
+  "description": "Offline-first personal organizer for a Work and Travel trip to Australia.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f2e24",
+  "theme_color": "#1f5c4a",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,83 @@
+// App-shell service worker. Only static assets are cached here - IndexedDB
+// (where all trip data lives) is a completely separate storage API that
+// this file never touches, so cache cleanup below can never delete user data.
+//
+// WHEN YOU ADD A NEW .js/.css/.html FILE: add its path to PRECACHE_URLS
+// below AND bump CACHE_NAME, or offline users won't get it.
+const CACHE_NAME = 'wat-organizer-shell-v1';
+
+const PRECACHE_URLS = [
+  './',
+  './index.html',
+  './manifest.webmanifest',
+  './CHANGELOG.md',
+  './css/base.css',
+  './css/layout.css',
+  './css/components.css',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon-maskable-512.png',
+  './icons/apple-touch-icon.png',
+  './js/app.js',
+  './js/router.js',
+  './js/db.js',
+  './js/schema.js',
+  './js/state.js',
+  './js/version.js',
+  './js/utils/id.js',
+  './js/utils/date.js',
+  './js/utils/currency.js',
+  './js/utils/files.js',
+  './js/utils/ics.js',
+  './js/utils/export-import.js',
+  './js/components/form-fields.js',
+  './js/components/modal.js',
+  './js/components/list-item.js',
+  './js/components/crud-view.js',
+  './js/components/document-picker.js',
+  './js/views/dashboard.js',
+  './js/views/trip.js',
+  './js/views/budget.js',
+  './js/views/visa.js',
+  './js/views/jobs.js',
+  './js/views/packing.js',
+  './js/views/contacts.js',
+  './js/views/documents.js',
+  './js/views/settings.js',
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)));
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'skipWaiting') self.skipWaiting();
+});
+
+// Stale-while-revalidate: serve from cache instantly (works offline),
+// refetch in the background to keep the cache warm for next time.
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
+  if (url.origin !== location.origin) return;
+
+  event.respondWith(
+    caches.open(CACHE_NAME).then(async (cache) => {
+      const cached = await cache.match(event.request);
+      const fetchPromise = fetch(event.request)
+        .then((response) => {
+          if (response.ok) cache.put(event.request, response.clone());
+          return response;
+        })
+        .catch(() => cached);
+      return cached || fetchPromise;
+    })
+  );
+});

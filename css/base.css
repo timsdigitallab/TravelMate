@@ -1,0 +1,78 @@
+:root {
+  --color-bg: #f7f5f0;
+  --color-surface: #ffffff;
+  --color-text: #1a231f;
+  --color-text-muted: #5c6b64;
+  --color-border: #e0ddd4;
+  --color-primary: #1f5c4a;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #f2a53b;
+  --color-danger: #b3412c;
+  --color-success: #2f7a4f;
+  --color-success-bg: #e3f3e8;
+  --color-warning: #a5691a;
+  --color-warning-bg: #fbead0;
+  --color-muted-bg: #e9e7e0;
+  --radius: 12px;
+  --tap-target: 44px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #101713;
+    --color-surface: #182420;
+    --color-text: #eef2ef;
+    --color-text-muted: #9fb0a7;
+    --color-border: #2b3a34;
+    --color-primary: #4caf8a;
+    --color-primary-contrast: #06120d;
+    --color-accent: #f2a53b;
+    --color-danger: #e08b76;
+    --color-success: #7fd3a1;
+    --color-success-bg: #163124;
+    --color-warning: #f0c27f;
+    --color-warning-bg: #332411;
+    --color-muted-bg: #22302a;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3 {
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+}
+
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.15rem; }
+h3 { font-size: 1rem; }
+
+p {
+  margin: 0 0 0.75em;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
