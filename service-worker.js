@@ -4,7 +4,7 @@
 //
 // WHEN YOU ADD A NEW .js/.css/.html FILE: add its path to PRECACHE_URLS
 // below AND bump CACHE_NAME, or offline users won't get it.
-const CACHE_NAME = 'wat-organizer-shell-v2';
+const CACHE_NAME = 'wat-organizer-shell-v3';
 
 // Pinned Firebase SDK modules loaded from the CDN by js/auth.js (and, from
 // stage 2/3 onward, js/db.js). Bump the version here whenever js/auth.js's
@@ -58,9 +58,20 @@ const PRECACHE_URLS = [
   './js/firebase-config.js',
 ];
 
+// Precache with an explicit network fetch per file, bypassing the browser's
+// regular HTTP cache (cache.addAll()'s default fetch can silently reuse a
+// stale HTTP-cached response - e.g. from a visit before this release was
+// deployed - and bake it into the SW's own cache, which then serves that
+// staleness offline indefinitely even after CACHE_NAME is bumped).
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll([...PRECACHE_URLS, ...FIREBASE_SDK_URLS]))
+    caches.open(CACHE_NAME).then((cache) =>
+      Promise.all(
+        [...PRECACHE_URLS, ...FIREBASE_SDK_URLS].map((url) =>
+          fetch(new Request(url, { cache: 'reload' })).then((response) => cache.put(url, response))
+        )
+      )
+    )
   );
 });
 
