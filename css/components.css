@@ -347,6 +347,27 @@
   overflow-y: auto;
 }
 
+/* Login */
+.login-screen {
+  max-width: 360px;
+  margin: 10vh auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-screen h1 {
+  text-align: center;
+}
+
+.login-screen form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-screen .button {
+  margin-top: 0.4em;
+}
+
 /* Update banner */
 .update-banner {
   position: fixed;

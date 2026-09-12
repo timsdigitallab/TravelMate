@@ -4,6 +4,15 @@ All notable changes to this app are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/): PATCH = bugfix, MINOR = new feature (data stays intact), MAJOR = would only ever be a non-migratable breaking change (should not normally happen).
 
+## [0.2.0] - 2026-09-12
+
+### Added
+- Firebase Authentication (email/password) login gate. There is no public sign-up in the app - the one account is created via the Firebase Console (see README).
+- Sign out button in Settings.
+
+### Notes
+- Data still lives in the local IndexedDB at this stage - only the login gate was added. Cross-device Firestore sync lands in a follow-up release.
+
 ## [0.1.0] - 2026-09-12
 
 ### Added

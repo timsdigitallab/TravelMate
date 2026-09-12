@@ -3,6 +3,7 @@ import { STORES } from '../schema.js';
 import { APP_VERSION } from '../version.js';
 import { exportAllData, readBackupFile, importAllData } from '../utils/export-import.js';
 import { emit } from '../state.js';
+import { getCurrentUser, signOutUser } from '../auth.js';
 
 async function renderAbout(container) {
   container.innerHTML = `
@@ -118,15 +119,31 @@ async function renderBackup(container) {
   });
 }
 
+function renderAccount(container) {
+  const user = getCurrentUser();
+  container.innerHTML = `
+    <div class="settings-section">
+      <h2>Account</h2>
+      <p>Signed in as <strong>${user?.email ?? 'unknown'}</strong></p>
+      <button type="button" class="button button--ghost" data-sign-out>Sign out</button>
+    </div>`;
+  container.querySelector('[data-sign-out]').addEventListener('click', async () => {
+    if (!confirm('Sign out of WAT Organizer on this device?')) return;
+    await signOutUser();
+  });
+}
+
 async function render(container) {
   container.innerHTML = `
     <h1>Settings</h1>
+    <div data-account></div>
     <div data-about></div>
     <div data-preferences></div>
     <div data-notifications></div>
     <div data-storage></div>
     <div data-backup></div>`;
 
+  renderAccount(container.querySelector('[data-account]'));
   await Promise.all([
     renderAbout(container.querySelector('[data-about]')),
     renderPreferences(container.querySelector('[data-preferences]')),

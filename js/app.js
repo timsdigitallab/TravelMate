@@ -1,4 +1,6 @@
 import { openDB } from './db.js';
+import { initAuth, authReady, onAuthChange } from './auth.js';
+import { showLoginScreen } from './views/login.js';
 import { registerRoute, initRouter } from './router.js';
 import dashboard from './views/dashboard.js';
 import trip from './views/trip.js';
@@ -49,6 +51,10 @@ function renderOfflineIndicator() {
 }
 
 async function main() {
+  initAuth();
+  const user = await authReady;
+  if (!user) await showLoginScreen();
+
   await openDB();
 
   registerRoute('/dashboard', dashboard, 'Dashboard');
@@ -69,6 +75,14 @@ async function main() {
   if (navigator.storage && navigator.storage.persist) {
     navigator.storage.persist().catch(() => {});
   }
+
+  let signedIn = true;
+  onAuthChange((u) => {
+    if (!u && signedIn) {
+      signedIn = false;
+      location.reload();
+    }
+  });
 }
 
 main();

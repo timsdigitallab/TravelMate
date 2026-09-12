@@ -4,7 +4,16 @@
 //
 // WHEN YOU ADD A NEW .js/.css/.html FILE: add its path to PRECACHE_URLS
 // below AND bump CACHE_NAME, or offline users won't get it.
-const CACHE_NAME = 'wat-organizer-shell-v1';
+const CACHE_NAME = 'wat-organizer-shell-v2';
+
+// Pinned Firebase SDK modules loaded from the CDN by js/auth.js (and, from
+// stage 2/3 onward, js/db.js). Bump the version here whenever js/auth.js's
+// import pins change, and keep this list in sync with what's imported.
+const FIREBASE_SDK_PREFIX = 'https://www.gstatic.com/firebasejs/';
+const FIREBASE_SDK_URLS = [
+  'https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js',
+  'https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js',
+];
 
 const PRECACHE_URLS = [
   './',
@@ -44,10 +53,15 @@ const PRECACHE_URLS = [
   './js/views/contacts.js',
   './js/views/documents.js',
   './js/views/settings.js',
+  './js/views/login.js',
+  './js/auth.js',
+  './js/firebase-config.js',
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)));
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll([...PRECACHE_URLS, ...FIREBASE_SDK_URLS]))
+  );
 });
 
 self.addEventListener('activate', (event) => {
@@ -66,7 +80,8 @@ self.addEventListener('message', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  if (url.origin !== location.origin) return;
+  const isPinnedFirebaseSdk = event.request.url.startsWith(FIREBASE_SDK_PREFIX);
+  if (url.origin !== location.origin && !isPinnedFirebaseSdk) return;
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
