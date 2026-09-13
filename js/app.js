@@ -1,6 +1,7 @@
 import { openDB } from './db.js';
 import { initAuth, authReady, onAuthChange } from './auth.js';
 import { showLoginScreen } from './views/login.js';
+import { runLegacyMigrationIfNeeded } from './utils/legacy-migration.js';
 import { registerRoute, initRouter } from './router.js';
 import dashboard from './views/dashboard.js';
 import trip from './views/trip.js';
@@ -56,6 +57,7 @@ async function main() {
   if (!user) await showLoginScreen();
 
   await openDB();
+  await runLegacyMigrationIfNeeded();
 
   registerRoute('/dashboard', dashboard, 'Dashboard');
   registerRoute('/trip', trip, 'Trip');

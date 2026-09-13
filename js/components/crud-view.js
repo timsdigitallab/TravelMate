@@ -7,7 +7,7 @@ import { renderForm, collectFormData } from './form-fields.js';
 import { openModal, closeModal } from './modal.js';
 import { renderListItem, renderEmptyState } from './list-item.js';
 import { makeId } from '../utils/id.js';
-import { emit } from '../state.js';
+import { emit, on } from '../state.js';
 
 // options:
 //   store, title, addLabel, emptyMessage, fields[]
@@ -19,6 +19,9 @@ import { emit } from '../state.js';
 //   extraFormHTML(record): extra markup appended into the modal body (e.g. linked documents)
 //   afterMount(formEl, record): wire up extra widgets in extraFormHTML
 export function createCrudView(options) {
+  let currentListEl = null;
+  let subscribed = false;
+
   async function loadRecords() {
     let records = await getAll(options.store);
     if (options.filter) records = records.filter(options.filter);
@@ -27,6 +30,7 @@ export function createCrudView(options) {
   }
 
   async function renderList(listEl) {
+    currentListEl = listEl;
     const records = await loadRecords();
     if (!records.length) {
       listEl.innerHTML = renderEmptyState(options.emptyMessage);
@@ -50,6 +54,10 @@ export function createCrudView(options) {
         const saved = { ...values, ...data, id: values.id || makeId() };
         await put(options.store, saved);
         closeModal();
+        // Firestore-backed stores already get this from db.js's own onSnapshot
+        // listener - this explicit emit is what still drives the refresh for
+        // the `documents` store, which is on the legacy IndexedDB path until
+        // it moves to Firebase Storage. Harmless no-op duplicate elsewhere.
         emit('data:changed', { store: options.store });
         await renderList(listEl);
       },
@@ -66,6 +74,20 @@ export function createCrudView(options) {
 
     const listEl = container.querySelector('[data-list]');
     await renderList(listEl);
+
+    // Re-render when this store changes from elsewhere (another device via
+    // Firestore's onSnapshot, or another view on this same page) - not just
+    // after this view's own add/edit/delete actions below. Subscribed once
+    // per createCrudView instance; renderList only ever reads, so this can
+    // never re-trigger the event it's listening for.
+    if (!subscribed) {
+      subscribed = true;
+      on('data:changed', ({ store }) => {
+        if (store !== options.store) return;
+        if (!currentListEl || !currentListEl.isConnected) return;
+        renderList(currentListEl);
+      });
+    }
 
     container.querySelector('[data-action="add"]').addEventListener('click', () => openForm(null, listEl));
 
