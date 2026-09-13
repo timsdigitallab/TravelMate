@@ -374,8 +374,8 @@
   top: 0;
   left: 0;
   right: 0;
-  background: var(--color-accent);
-  color: #24160a;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -385,10 +385,11 @@
 }
 
 .update-banner button {
-  background: #24160a;
-  color: #fff;
+  background: var(--color-primary-contrast);
+  color: var(--color-primary);
   border: none;
   padding: 0.3em 0.9em;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
 }

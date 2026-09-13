@@ -1,3 +1,3 @@
 // Bump this on every release; shown in Settings and used in backup metadata.
 // See CHANGELOG.md for what changed at each version.
-export const APP_VERSION = '0.3.0';
+export const APP_VERSION = '0.4.0';

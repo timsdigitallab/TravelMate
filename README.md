@@ -1,4 +1,4 @@
-# WAT Organizer
+# TravelMate
 
 A personal, offline-first organizer for a Work and Travel trip to Australia: route planning, budget, visa/official matters, job search & 88-day work tracking, packing list, contacts/emergency info, and document storage.
 

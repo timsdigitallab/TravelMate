@@ -17,7 +17,7 @@ export function showLoginScreen() {
     const container = document.getElementById('view');
     container.innerHTML = `
       <div class="login-screen">
-        <h1>WAT Organizer</h1>
+        <h1>TravelMate</h1>
         <p class="form-hint">Sign in to sync your trip data across devices.</p>
         <form data-login-form>
           <label class="form-field" for="login-email">

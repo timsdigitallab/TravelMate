@@ -9,7 +9,7 @@ async function renderAbout(container) {
   container.innerHTML = `
     <div class="settings-section">
       <h2>About</h2>
-      <p>WAT Organizer — version ${APP_VERSION}</p>
+      <p>TravelMate — version ${APP_VERSION}</p>
       <button type="button" class="button button--ghost" data-toggle-changelog>Show changelog</button>
       <pre class="changelog" data-changelog hidden></pre>
     </div>`;
@@ -128,7 +128,7 @@ function renderAccount(container) {
       <button type="button" class="button button--ghost" data-sign-out>Sign out</button>
     </div>`;
   container.querySelector('[data-sign-out]').addEventListener('click', async () => {
-    if (!confirm('Sign out of WAT Organizer on this device?')) return;
+    if (!confirm('Sign out of TravelMate on this device?')) return;
     await signOutUser();
   });
 }

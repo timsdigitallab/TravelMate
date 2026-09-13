@@ -4,6 +4,14 @@ All notable changes to this app are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/): PATCH = bugfix, MINOR = new feature (data stays intact), MAJOR = would only ever be a non-migratable breaking change (should not normally happen).
 
+## [0.4.0] - 2026-09-13
+
+### Changed
+- Renamed the app from "WAT Organizer" to **TravelMate**.
+- New visual design ("Sandstone Coast"): a green-to-orange-to-brown gradient header and a matching deep-green bottom navigation bar stay fixed in both light and dark mode, while the content area (cards, lists) now uses a calm neutral gray/cream so the colorful header and nav stand out. Self-hosted Spectral (headings) and Mulish (body) fonts, downloaded locally so they're available offline from the first load rather than depending on the Google Fonts CDN.
+- Bottom navigation now shows an icon above each label (`js/utils/icons.js`), matching the new design.
+- App icons regenerated in the new color scheme.
+
 ## [0.3.0] - 2026-09-13
 
 ### Added

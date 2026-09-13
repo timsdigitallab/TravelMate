@@ -9,17 +9,25 @@
 .app-header {
   display: flex;
   align-items: center;
+  gap: 0.5em;
   padding: 0.9em 1em;
-  background: var(--color-primary);
-  color: var(--color-primary-contrast);
+  background: var(--chrome-gradient);
+  color: var(--chrome-text);
   position: sticky;
   top: 0;
   z-index: 5;
 }
 
+.app-header__icon {
+  display: flex;
+  flex: none;
+}
+
 .app-header__title {
+  font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
 }
 
 .view {
@@ -36,27 +44,29 @@
   right: 0;
   display: flex;
   overflow-x: auto;
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  background: var(--nav-bg);
   z-index: 5;
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .bottom-nav a {
   flex: 1 0 auto;
-  min-width: 84px;
+  min-width: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
   text-align: center;
   padding: 0.6em 0.4em;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 500;
   text-decoration: none;
-  color: var(--color-text-muted);
-  border-top: 2px solid transparent;
+  color: var(--nav-muted);
 }
 
 .bottom-nav a.is-active {
-  color: var(--color-primary);
-  border-top-color: var(--color-primary);
-  font-weight: 600;
+  color: var(--nav-active);
+  font-weight: 700;
 }
 
 .view-header {

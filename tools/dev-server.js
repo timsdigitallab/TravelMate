@@ -20,6 +20,7 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.md': 'text/markdown; charset=utf-8',
   '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2',
 };
 
 const server = http.createServer((req, res) => {

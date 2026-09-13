@@ -1,39 +1,56 @@
+@import url('fonts.css');
+
+/* Sandstone Coast: content area adapts to light/dark, but the header and
+   bottom nav ("chrome") stay a fixed colored band in both modes - that's
+   the design (aerial-coastline gradient + deep-green nav) the app was
+   built around, not a light/dark variant in its own right. */
 :root {
-  --color-bg: #f7f5f0;
+  --color-bg: #f7f4ec;
   --color-surface: #ffffff;
-  --color-text: #1a231f;
-  --color-text-muted: #5c6b64;
-  --color-border: #e0ddd4;
-  --color-primary: #1f5c4a;
+  --color-surface-alt: #f0ece0;
+  --color-text: #1c2118;
+  --color-text-muted: #5c6b52;
+  --color-border: #e2ddc9;
+  --color-primary: #a8481a;
   --color-primary-contrast: #ffffff;
-  --color-accent: #f2a53b;
+  --color-accent: #2f6b52;
   --color-danger: #b3412c;
   --color-success: #2f7a4f;
   --color-success-bg: #e3f3e8;
-  --color-warning: #a5691a;
+  --color-warning: #8a5514;
   --color-warning-bg: #fbead0;
-  --color-muted-bg: #e9e7e0;
-  --radius: 12px;
+  --color-muted-bg: #f0ece0;
+
+  --chrome-gradient: linear-gradient(100deg, #1f5d38, #d05f23, #8e3b1b);
+  --chrome-text: #ffffff;
+  --nav-bg: #16301e;
+  --nav-muted: #b8cfc0;
+  --nav-active: #f0813f;
+
+  --font-heading: 'Spectral', Georgia, serif;
+  --font-body: 'Mulish', system-ui, -apple-system, sans-serif;
+  --radius: 10px;
   --tap-target: 44px;
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #101713;
-    --color-surface: #182420;
-    --color-text: #eef2ef;
-    --color-text-muted: #9fb0a7;
-    --color-border: #2b3a34;
-    --color-primary: #4caf8a;
-    --color-primary-contrast: #06120d;
-    --color-accent: #f2a53b;
+    --color-bg: #1a1c18;
+    --color-surface: #222420;
+    --color-surface-alt: #2a2c27;
+    --color-text: #eef0ea;
+    --color-text-muted: #b0b8a8;
+    --color-border: #383a34;
+    --color-primary: #f0813f;
+    --color-primary-contrast: #1a1c18;
+    --color-accent: #f3ac76;
     --color-danger: #e08b76;
     --color-success: #7fd3a1;
     --color-success-bg: #163124;
-    --color-warning: #f0c27f;
-    --color-warning-bg: #332411;
-    --color-muted-bg: #22302a;
+    --color-warning: #f0c9a0;
+    --color-warning-bg: #2a2c27;
+    --color-muted-bg: #2a2c27;
   }
 }
 
@@ -49,7 +66,7 @@ body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.45;
   -webkit-tap-highlight-color: transparent;
@@ -58,6 +75,8 @@ body {
 h1, h2, h3 {
   margin: 0 0 0.5em;
   line-height: 1.2;
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 h1 { font-size: 1.5rem; }

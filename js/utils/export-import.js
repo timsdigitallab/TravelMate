@@ -46,7 +46,7 @@ export async function readBackupFile(file) {
   const text = await file.text();
   const payload = JSON.parse(text);
   if (!payload || !payload.data || !payload.meta) {
-    throw new Error('This does not look like a WAT Organizer backup file.');
+    throw new Error('This does not look like a TravelMate backup file.');
   }
   return payload;
 }

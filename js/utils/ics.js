@@ -21,7 +21,7 @@ function dateOnly(iso) {
 
 // events: [{ uid, title, description, date: 'YYYY-MM-DD', reminderDaysBefore }]
 export function buildICS(events) {
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//WAT Organizer//EN', 'CALSCALE:GREGORIAN'];
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//TravelMate//EN', 'CALSCALE:GREGORIAN'];
   const stamp = dateStamp();
   for (const ev of events) {
     lines.push('BEGIN:VEVENT');

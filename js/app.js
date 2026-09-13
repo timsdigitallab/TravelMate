@@ -59,15 +59,15 @@ async function main() {
   await openDB();
   await runLegacyMigrationIfNeeded();
 
-  registerRoute('/dashboard', dashboard, 'Dashboard');
-  registerRoute('/trip', trip, 'Trip');
-  registerRoute('/budget', budget, 'Budget');
-  registerRoute('/visa', visa, 'Visa');
-  registerRoute('/jobs', jobs, 'Jobs');
-  registerRoute('/packing', packing, 'Packing');
-  registerRoute('/contacts', contacts, 'Contacts');
-  registerRoute('/documents', documents, 'Documents');
-  registerRoute('/settings', settings, 'Settings');
+  registerRoute('/dashboard', dashboard, 'Dashboard', 'dashboard');
+  registerRoute('/trip', trip, 'Trip', 'trip');
+  registerRoute('/budget', budget, 'Budget', 'budget');
+  registerRoute('/visa', visa, 'Visa', 'visa');
+  registerRoute('/jobs', jobs, 'Jobs', 'jobs');
+  registerRoute('/packing', packing, 'Packing', 'packing');
+  registerRoute('/contacts', contacts, 'Contacts', 'contacts');
+  registerRoute('/documents', documents, 'Documents', 'documents');
+  registerRoute('/settings', settings, 'Settings', 'settings');
 
   initRouter({ viewEl: document.getElementById('view'), navEl: document.getElementById('nav') });
 

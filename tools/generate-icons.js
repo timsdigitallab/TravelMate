@@ -10,8 +10,8 @@ const zlib = require('zlib');
 const OUT_DIR = path.join(__dirname, '..', 'icons');
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
-const BG = [0x1f, 0x5c, 0x4a]; // deep eucalyptus green
-const SUN = [0xf2, 0xa5, 0x3b]; // outback sunset orange
+const BG = [0x16, 0x30, 0x1e]; // Sandstone Coast: deep forest green (nav-bg)
+const SUN = [0xf0, 0x81, 0x3f]; // Sandstone Coast: burnt orange (primary)
 
 function crc32(buf) {
   let table = crc32.table;

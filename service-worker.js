@@ -4,7 +4,7 @@
 //
 // WHEN YOU ADD A NEW .js/.css/.html FILE: add its path to PRECACHE_URLS
 // below AND bump CACHE_NAME, or offline users won't get it.
-const CACHE_NAME = 'wat-organizer-shell-v4';
+const CACHE_NAME = 'travelmate-shell-v5';
 
 // Pinned Firebase SDK modules loaded from the CDN by js/auth.js and js/db.js.
 // Bump the version here whenever those imports' pins change, and keep this
@@ -24,12 +24,20 @@ const PRECACHE_URLS = [
   './css/base.css',
   './css/layout.css',
   './css/components.css',
+  './css/fonts.css',
+  './fonts/Mulish-400.woff2',
+  './fonts/Mulish-500.woff2',
+  './fonts/Mulish-600.woff2',
+  './fonts/Mulish-700.woff2',
+  './fonts/Spectral-600.woff2',
+  './fonts/Spectral-700.woff2',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
   './icons/apple-touch-icon.png',
   './js/app.js',
   './js/router.js',
+  './js/utils/icons.js',
   './js/db.js',
   './js/schema.js',
   './js/state.js',

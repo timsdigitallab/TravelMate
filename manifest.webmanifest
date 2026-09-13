@@ -1,13 +1,13 @@
 {
-  "name": "Work and Travel Australia Organizer",
-  "short_name": "WAT Organizer",
+  "name": "TravelMate — Work and Travel Australia Organizer",
+  "short_name": "TravelMate",
   "description": "Offline-first personal organizer for a Work and Travel trip to Australia.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0f2e24",
-  "theme_color": "#1f5c4a",
+  "background_color": "#1a1c18",
+  "theme_color": "#1f5d38",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
