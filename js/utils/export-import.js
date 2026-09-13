@@ -7,6 +7,8 @@ import { APP_VERSION } from '../version.js';
 
 const PLAIN_STORES = [
   STORES.tripLegs,
+  STORES.places,
+  STORES.pointsOfInterest,
   STORES.transactions,
   STORES.visaItems,
   STORES.jobApplications,

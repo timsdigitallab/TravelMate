@@ -4,7 +4,7 @@
 //
 // WHEN YOU ADD A NEW .js/.css/.html FILE: add its path to PRECACHE_URLS
 // below AND bump CACHE_NAME, or offline users won't get it.
-const CACHE_NAME = 'travelmate-shell-v7';
+const CACHE_NAME = 'travelmate-shell-v8';
 
 // Pinned Firebase SDK modules loaded from the CDN by js/auth.js and js/db.js.
 // Bump the version here whenever those imports' pins change, and keep this
@@ -48,6 +48,7 @@ const PRECACHE_URLS = [
   './js/utils/files.js',
   './js/utils/ics.js',
   './js/utils/export-import.js',
+  './js/utils/maps.js',
   './js/components/form-fields.js',
   './js/components/modal.js',
   './js/components/list-item.js',
@@ -55,6 +56,7 @@ const PRECACHE_URLS = [
   './js/components/document-picker.js',
   './js/views/dashboard.js',
   './js/views/trip.js',
+  './js/views/places.js',
   './js/views/budget.js',
   './js/views/visa.js',
   './js/views/jobs.js',

@@ -15,6 +15,8 @@ export const DB_VERSION = 1;
 export const STORES = {
   documents: 'documents',
   tripLegs: 'tripLegs',
+  places: 'places',
+  pointsOfInterest: 'pointsOfInterest',
   transactions: 'transactions',
   visaItems: 'visaItems',
   jobApplications: 'jobApplications',

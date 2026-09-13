@@ -4,6 +4,17 @@ All notable changes to this app are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/): PATCH = bugfix, MINOR = new feature (data stays intact), MAJOR = would only ever be a non-migratable breaking change (should not normally happen).
 
+## [0.6.0] - 2026-09-13
+
+### Added
+- Trip is now split into two tabs: **Places**, a library of researched locations you can build up at any time (not tied to a date), and **Itinerary**, the dated stop-by-stop route the "Trip" screen used to be.
+- Each place can hold points of interest (sights, activities, food & drink, other), grouped and collapsible by status (Idea / Planned / Done), same pattern as the Packing List's groups.
+- Every place and point of interest has a "Search on Google Maps" button next to its Maps-link field, opening a Google Maps search for the name you've typed in a new tab - copy the share link back in and its coordinates are pulled out automatically (regex-parsed client-side, no Maps API involved).
+- An Itinerary stop can optionally be linked to a Place.
+
+### Notes
+- New Firestore collections `places` and `pointsOfInterest`, synced and backed up the same way as every other module.
+
 ## [0.5.1] - 2026-09-13
 
 ### Fixed
