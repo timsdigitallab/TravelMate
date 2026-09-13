@@ -4,6 +4,11 @@ All notable changes to this app are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/): PATCH = bugfix, MINOR = new feature (data stays intact), MAJOR = would only ever be a non-migratable breaking change (should not normally happen).
 
+## [0.5.1] - 2026-09-13
+
+### Fixed
+- Packing List: could only ever save one item per List. The hidden "new list name" input stayed `required` even while hidden (i.e. whenever an existing list was picked instead of "+ Add new..."), which made the browser silently refuse to submit the form. `required` is now only ever set on the field that's actually visible.
+
 ## [0.5.0] - 2026-09-13
 
 ### Changed

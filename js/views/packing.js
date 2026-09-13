@@ -62,18 +62,29 @@ function selectWithCreateField(fieldKey, label, options, currentValue, { require
         ${valueOptions}
         <option value="${NEW_VALUE}">+ Add new…</option>
       </select>
-      <input type="text" data-new-field="${fieldKey}" placeholder="New ${label.toLowerCase()} name" hidden ${required ? 'required' : ''} />
+      <input type="text" data-new-field="${fieldKey}" placeholder="New ${label.toLowerCase()} name" hidden />
     </label>`;
 }
 
-function wireSelectWithCreate(formEl, fieldKey) {
+// `required` must only ever be true on the input while it's actually the
+// active/visible one: a hidden field that's still `required` makes native
+// form validation silently refuse to submit (it can't show the "please
+// fill this in" bubble on a display:none element) - which is exactly what
+// broke adding a second item to an existing list, since the select then
+// has a valid value but its hidden "new name" companion was still required.
+function wireSelectWithCreate(formEl, fieldKey, { required = false } = {}) {
   const select = formEl.querySelector(`[data-select-field="${fieldKey}"]`);
   const input = formEl.querySelector(`[data-new-field="${fieldKey}"]`);
-  select.addEventListener('change', () => {
+  const applyState = () => {
     const isNew = select.value === NEW_VALUE;
     input.hidden = !isNew;
-    if (isNew) input.focus();
+    input.required = isNew && required;
+  };
+  select.addEventListener('change', () => {
+    applyState();
+    if (select.value === NEW_VALUE) input.focus();
   });
+  applyState();
 }
 
 function readSelectWithCreate(formEl, fieldKey) {
@@ -101,8 +112,8 @@ async function openForm(record) {
       ${selectWithCreateField('category', 'Category', categoryOptions, values.category, { allowBlank: true })}
     `,
     onMount: (formEl) => {
-      wireSelectWithCreate(formEl, 'listName');
-      wireSelectWithCreate(formEl, 'category');
+      wireSelectWithCreate(formEl, 'listName', { required: true });
+      wireSelectWithCreate(formEl, 'category', { required: false });
     },
     onSubmit: async (formEl) => {
       const listName = readSelectWithCreate(formEl, 'listName');
