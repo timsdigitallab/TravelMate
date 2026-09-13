@@ -4,6 +4,12 @@ All notable changes to this app are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/): PATCH = bugfix, MINOR = new feature (data stays intact), MAJOR = would only ever be a non-migratable breaking change (should not normally happen).
 
+## [0.5.0] - 2026-09-13
+
+### Changed
+- Packing List: `List` and `Category` are now dropdowns populated from whatever values you've already used, with a "+ Add new..." option to type a new one on the spot - no separate list of lists to manage, values simply stop appearing once nothing uses them anymore.
+- Packing List overview is now grouped by List, then Category, both collapsible (native disclosure widgets) - so you can e.g. expand just "Daytrip → Clothing" and leave everything else collapsed. Expanded/collapsed state survives checking items off, adding/editing/deleting, and live updates from another device.
+
 ## [0.4.0] - 2026-09-13
 
 ### Changed
