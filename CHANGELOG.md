@@ -4,6 +4,11 @@ All notable changes to this app are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/): PATCH = bugfix, MINOR = new feature (data stays intact), MAJOR = would only ever be a non-migratable breaking change (should not normally happen).
 
+## [0.6.3] - 2026-09-15
+
+### Changed
+- Header logo: "mate" recolored to orange, background plate removed - shows directly on the gradient now that both words have enough contrast against it.
+
 ## [0.6.2] - 2026-09-15
 
 ### Changed

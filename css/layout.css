@@ -18,17 +18,9 @@
   z-index: 5;
 }
 
-.app-header__logo-plate {
-  display: flex;
-  align-items: center;
-  background: #f7f4ec;
-  border-radius: 10px;
-  padding: 5px 10px;
-}
-
 .app-header__logo {
   display: block;
-  height: 34px;
+  height: 40px;
   width: auto;
 }
 
