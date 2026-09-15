@@ -18,16 +18,18 @@
   z-index: 5;
 }
 
-.app-header__icon {
+.app-header__logo-plate {
   display: flex;
-  flex: none;
+  align-items: center;
+  background: #f7f4ec;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
-.app-header__title {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
+.app-header__logo {
+  display: block;
+  height: 34px;
+  width: auto;
 }
 
 .view {
